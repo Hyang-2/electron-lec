@@ -1,6 +1,6 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import Login from '@/renderer/pages/login';
 
 function Hello() {
   return (
@@ -12,10 +12,11 @@ function Hello() {
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+    <RouterProvider
+      router={createHashRouter([
+        { path: '/', element: <Hello /> },
+        { path: '/login', element: <Login /> },
+      ])}
+    />
   );
 }

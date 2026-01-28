@@ -34,7 +34,7 @@ ipcMain.on('ipc-example', async (event, arg) => {
 ipcMain.handle('INVOKE_EXAMPLE', async (event, arg) => {
   console.log('INVOKE:' + arg);
   return 'INVOKE:PONG';
-})
+});
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -76,8 +76,8 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728,
+    width: 640,
+    height: 480,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -86,7 +86,7 @@ const createWindow = async () => {
     },
   });
 
-  mainWindow.loadURL(resolveHtmlPath('index.html'));
+  mainWindow.loadURL(resolveHtmlPath('login'));
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {

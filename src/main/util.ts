@@ -3,11 +3,15 @@ import { URL } from 'url';
 import path from 'path';
 
 export function resolveHtmlPath(htmlFileName: string) {
+  if (htmlFileName.startsWith('/')) {
+    htmlFileName = htmlFileName.substring(1);
+  }
+
   if (process.env.NODE_ENV === 'development') {
     const port = process.env.PORT || 1212;
     const url = new URL(`http://localhost:${port}`);
-    url.pathname = htmlFileName;
-    return url.href;
+    url.pathname = 'index.html';
+    return url.href + `#${htmlFileName}`;
   }
-  return `file://${path.resolve(__dirname, '../renderer/', htmlFileName)}`;
+  return `file://${path.resolve(__dirname, '../renderer/', `index.html#${htmlFileName}`)}`;
 }
